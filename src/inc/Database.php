@@ -52,5 +52,26 @@ class  Database
 
     }
 
+    public function insert($query = "")
+
+    {
+
+        try {
+            $stmt = $this->connection->query( $query );
+            if($stmt === false) {
+
+                throw New Exception("Unable to do prepared statement: " . $query);
+
+            }
+
+             return $this->connection;
+
+        } catch(Exception $e) {
+
+            throw New Exception( $e->getMessage() );
+
+        }	
+
+    }
 
 }

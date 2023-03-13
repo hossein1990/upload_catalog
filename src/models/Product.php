@@ -8,7 +8,7 @@ class Product extends Database {
     {
         $productId = $paramters['Product_ID'];
         $result = $this->findByProductId( $productId);
-        $countProduct =  $result->field_count;
+        $countProduct =  mysqli_num_rows ($result);
         if($countProduct ==  1)
            $this->update($paramters);
         else
@@ -26,9 +26,9 @@ class Product extends Database {
         $url = $paramters['Product_URL'];
         $searchKeywords = $paramters['Search_Keywords']; 
         $nr = $paramters['NR'];
-
+        $brandId = $paramters['brand_id'];
         return $this->executeStatement("INSERT INTO products (product_id, name, url,search_keywords,brand_id,nr)
-        VALUES ( $productId , '$name','$url' ,' $searchKeywords',1, '$nr')");
+        VALUES ( $productId , '$name','$url' ,' $searchKeywords',$brandId, '$nr')");
     }
     public function update($paramters)
     {
@@ -37,7 +37,8 @@ class Product extends Database {
         $url = $paramters['Product_URL'];
         $searchKeywords = $paramters['Search_Keywords']; 
         $nr = $paramters['NR'];
-        return $this->executeStatement("UPDATE   products SET name='$name' , url = '$url',search_keywords=' $searchKeywords', nr='$nr' WHERE product_id=$productId");
+        $brandId = $paramters['brand_id'];
+        return $this->executeStatement("UPDATE   products SET brand_id=$brandId , name='$name' , url = '$url',search_keywords=' $searchKeywords', nr='$nr' WHERE product_id=$productId");
     }
 
 }
