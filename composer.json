@@ -1,0 +1,17 @@
+{
+    "name": "hossein/task1",
+    "autoload": {
+        "psr-4": {
+            "Hossein\\Task1\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "hossein1990",
+            "email": "hossein.khirabadi@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^2.4"
+    }
+}
