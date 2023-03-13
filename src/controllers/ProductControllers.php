@@ -2,6 +2,7 @@
 namespace Hossein\Task1\controllers;
 use Hossein\Task1\requests\uploadRequest;
 use Hossein\Task1\services\XmlToJsonService;
+use Hossein\Task1\services\ProductSaveService;
 class ProductControllers 
 {
     public static function uploadCatalog($file)
@@ -10,6 +11,7 @@ class ProductControllers
         $validations = $uploadRequest->validation();
         if(!is_null($validations))
             return $validations;
-        return  $fileContent;
+        $productSerivce = new ProductSaveService();
+        return  $productSerivce->action($file);
     }
 }
