@@ -7,6 +7,7 @@ class Requests
         $currentType=$file['type'];
         if(!in_array($currentType,$validateTypes))
              return "file type is invalid";
+        return null;
     }
     
 }

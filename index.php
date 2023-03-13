@@ -11,4 +11,4 @@ if($parts[2] !="upload" || $_SERVER['REQUEST_METHOD'] !== 'POST')
    
 }
 $reciveFile = $_FILES['catalog'];
-$apiclass->uploadCatalog($reciveFile );
+print_r($apiclass->uploadCatalog($reciveFile )) ;
