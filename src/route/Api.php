@@ -5,6 +5,6 @@ class Api extends Route
 {
    public function uploadCatalog($file)
    {
-    echo ProductControllers::uploadCatalog("hossein");
+    echo ProductControllers::uploadCatalog($file);
    }
 }

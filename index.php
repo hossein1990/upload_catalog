@@ -10,4 +10,5 @@ if($parts[2] !="upload" || $_SERVER['REQUEST_METHOD'] !== 'POST')
     $apiclass->notFound("page not found!!!");
    
 }
-$apiclass->uploadCatalog("file");
+$reciveFile = $_FILES['catalog'];
+$apiclass->uploadCatalog($reciveFile );
