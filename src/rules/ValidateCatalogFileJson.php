@@ -7,7 +7,6 @@ class ValidateCatalogFileJson
     public function rule($file)
      {
         $fileContent =  file_get_contents($file['tmp_name']);
-        $currentType=$file['type'];
         $content =  $fileContent;
         $contentArray = json_decode($content,true);
         $products = $contentArray;
