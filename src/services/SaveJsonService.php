@@ -25,8 +25,9 @@ class SaveJsonService implements InterfaceService
         {
 
          
-          echo   $this->productRepo->saveOrUpdateProduct($product);
-
+          $productId =    $this->productRepo->saveOrUpdateProduct($product);
+          foreach($product['Items'] as  $item)
+          $this->productRepo->saveOrUpdateItem($item,$productId);
             
         }
    }
