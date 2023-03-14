@@ -14,6 +14,7 @@ class Product extends Database {
             $this->update($paramters);
             $firstRow = $result->fetch_row() ;
             $id = $firstRow[0];
+             
             return $id;
         }
         else
