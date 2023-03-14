@@ -10,9 +10,13 @@ class RepositoryProduct implements InterfaceProduct {
        $productModel = new Product();
        $brandModel = new Brand();
        $categoryModel = new Category();
-       $category["category"] = $produuct['Category'];
-       $category["Category_id"] = $produuct['Category_ID'];
-       $categorIds = $categoryModel->saveOrUpdate($category);
+       $category["name"] = $produuct['Category'];
+       $category["id"] = $produuct['Category_ID'];
+       $categoryModel->saveOrUpdate($category);
+       $category["name"] = $produuct['SubCategory'];
+       $category["id"] = $produuct['SubCategory_ID'];
+       $category["parent_id"] = $produuct['Category_ID'];
+       $categoryModel->saveOrUpdate($category);
        $brandId =  $brandModel->saveOrUpdate($produuct["Brand"]);
        $produuct["brand_id"] = $brandId;
        return $productModel->saveOrUpdate($produuct);

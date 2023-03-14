@@ -27,8 +27,9 @@ class Product extends Database {
         $searchKeywords = $paramters['Search_Keywords']; 
         $nr = $paramters['NR'];
         $brandId = $paramters['brand_id'];
-        return $this->executeStatement("INSERT INTO products (product_id, name, url,search_keywords,brand_id,nr)
-        VALUES ( $productId , '$name','$url' ,' $searchKeywords',$brandId, '$nr')");
+        $subCategoryId = $paramters['SubCategory_ID'];
+        return $this->executeStatement("INSERT INTO products (product_id, name, url,search_keywords,brand_id,nr,category_id)
+        VALUES ( $productId , '$name','$url' ,' $searchKeywords',$brandId, '$nr',$subCategoryId)");
     }
     public function update($paramters)
     {
@@ -38,7 +39,8 @@ class Product extends Database {
         $searchKeywords = $paramters['Search_Keywords']; 
         $nr = $paramters['NR'];
         $brandId = $paramters['brand_id'];
-        return $this->executeStatement("UPDATE   products SET brand_id=$brandId , name='$name' , url = '$url',search_keywords=' $searchKeywords', nr='$nr' WHERE product_id=$productId");
+        $subCategoryId = $paramters['SubCategory_ID'];
+        return $this->executeStatement("UPDATE   products SET category_id=$subCategoryId , brand_id=$brandId , name='$name' , url = '$url',search_keywords=' $searchKeywords', nr='$nr' WHERE product_id=$productId");
     }
 
 }
