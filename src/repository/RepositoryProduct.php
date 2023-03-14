@@ -7,6 +7,8 @@ use Hossein\Task1\models\Category;
 use Hossein\Task1\models\Item;
 use Hossein\Task1\models\Color;
 use Hossein\Task1\models\Size;
+use Hossein\Task1\models\Warehouse;
+use Hossein\Task1\models\ItmesWarehouses;
 class RepositoryProduct implements InterfaceProduct {
     public function saveOrUpdateProduct($product)
     {
@@ -32,7 +34,7 @@ class RepositoryProduct implements InterfaceProduct {
         $colorFamilyName= $item["Color_Family"];
         $colorFamilyId = $colorModel->saveOrUpdate($colorFamilyName);
 
-        ////////////////////////////
+        // ////////////////////////////
         $sizeModel = new Size();
         $sizeName= $item["Size"];
         $sizeId = $sizeModel->saveOrUpdate($sizeName);
@@ -45,6 +47,18 @@ class RepositoryProduct implements InterfaceProduct {
         $item["size_family_id"] = $sizeFamilyId;
         $item["product_id"] = $productId;
         $itemModel = new Item();
-        $itemModel->saveOrUpdate($item);
+        $itemId = $itemModel->saveOrUpdate($item);
+        $warehouses = $item["Warehouse"];
+        $warehouseModel = new Warehouse();
+        $itmesWarehouses= new ItmesWarehouses();
+        $paremters["item_id"] = $itemId ;
+        foreach( $warehouses  as $name=>$InventoryCounts)
+           {
+            $paremters["name"] = $name;
+            $paremters["inventory_count"] = $InventoryCounts["Inventory_Count"];
+            $warehouseId= $warehouseModel->saveOrUpdate( $paremters);
+            $paremters["warehouse_id"] =  $warehouseId;
+            $itmesWarehouses->saveOrUpdate( $paremters);
+           }
     }
 }

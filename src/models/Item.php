@@ -9,10 +9,10 @@ class Item extends Database {
         $sku = $paramters['SKU'];
         $result = $this->findByItemSku( $sku);
         $countItem =  mysqli_num_rows ($result);
-        echo $countItem."===$sku";
+       
         if($countItem ==  1)
         {
-            echo "hossein";
+
             $this->update($paramters);
             $firstRow = $result->fetch_row() ;
             $id = $firstRow[0];
@@ -24,8 +24,6 @@ class Item extends Database {
             $id = $result->insert_id;
             return $id;
         }
-   
-      
     }
     public function findByItemSku( $sku)
     {
