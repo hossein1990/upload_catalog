@@ -45,8 +45,10 @@ class Item extends Database {
         $productId = $paramters["product_id"];
         $colorId = $paramters['color_id'];
         $colorFamilyId = $paramters["color_family_id"];
-        return $this->insert("INSERT INTO items (product_id, sku, price,retail_price,thumbnail_url,rating_avg,rating_count,active,occassion,color_id,color_family_id)
-        VALUES ( $productId , '$sku',$price ,$retailPrice,'$thumbnailUrl', $ratingAvg,$ratingCount, $active,'$occassion',$colorId,$colorFamilyId)");
+        $sizeId = $paramters['size_id'];
+        $sizeFamilyId = $paramters["size_family_id"];
+        return $this->insert("INSERT INTO items (product_id, sku, price,retail_price,thumbnail_url,rating_avg,rating_count,active,occassion,color_id,color_family_id,size_id,size_family_id)
+        VALUES ( $productId , '$sku',$price ,$retailPrice,'$thumbnailUrl', $ratingAvg,$ratingCount, $active,'$occassion',$colorId,$colorFamilyId,$sizeId, $sizeFamilyId)");
     }
     public function update($paramters)
     {
@@ -60,9 +62,11 @@ class Item extends Database {
         $ratingCount = $paramters["Rating_Count"];
         $colorId = $paramters['color_id'];
         $colorFamilyId = $paramters["color_family_id"];
+        $sizeId = $paramters['size_id'];
+        $sizeFamilyId = $paramters["size_family_id"];
         $active = $paramters["Active"]??0;
         $productId = $paramters["product_id"];
-        return $this->executeStatement("UPDATE   items SET color_id=$colorId,color_family_id=$colorFamilyId, product_id=$productId,season='$season',occassion='$occassion', sku='$sku' , price='$price' , retail_price='$retailPrice' , thumbnail_url = '$thumbnailUrl',rating_avg='$ratingAvg', rating_count='$ratingCount' WHERE sku='$sku'");
+        return $this->executeStatement("UPDATE   items SET size_id=$sizeId,size_family_id=$sizeFamilyId, color_id=$colorId,color_family_id=$colorFamilyId, product_id=$productId,season='$season',occassion='$occassion', sku='$sku' , price='$price' , retail_price='$retailPrice' , thumbnail_url = '$thumbnailUrl',rating_avg='$ratingAvg', rating_count='$ratingCount' WHERE sku='$sku'");
     }
 
 }

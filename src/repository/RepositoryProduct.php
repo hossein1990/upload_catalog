@@ -6,6 +6,7 @@ use Hossein\Task1\models\Brand;
 use Hossein\Task1\models\Category;
 use Hossein\Task1\models\Item;
 use Hossein\Task1\models\Color;
+use Hossein\Task1\models\Size;
 class RepositoryProduct implements InterfaceProduct {
     public function saveOrUpdateProduct($product)
     {
@@ -30,8 +31,18 @@ class RepositoryProduct implements InterfaceProduct {
         $colorId = $colorModel->saveOrUpdate($colorName);
         $colorFamilyName= $item["Color_Family"];
         $colorFamilyId = $colorModel->saveOrUpdate($colorFamilyName);
+
+        ////////////////////////////
+        $sizeModel = new Size();
+        $sizeName= $item["Size"];
+        $sizeId = $sizeModel->saveOrUpdate($sizeName);
+        $sizeFamilyName= is_array($item["Size_Family"])?json_encode($item["Size_Family"]):$item["Size_Family"];
+        $sizeFamilyId = $sizeModel->saveOrUpdate($sizeFamilyName);
+        ///////////////////////////
         $item["color_id"] = $colorId;
         $item["color_family_id"] = $colorFamilyId;
+        $item["size_id"] = $sizeId;
+        $item["size_family_id"] = $sizeFamilyId;
         $item["product_id"] = $productId;
         $itemModel = new Item();
         $itemModel->saveOrUpdate($item);
