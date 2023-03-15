@@ -1,5 +1,4 @@
+The project used a composer as a package manager.
+This logic is placed in services folder and used dependency injection to decrease dependency.
 
-
-## درباره فروشگاه
-
-فروشگاه توسط شرکت ای برند طراحی و تولید شده است.
+![alt text](https://freeimage.host/i/realtion.HXSDjRa)
